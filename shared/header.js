@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function Header({navigation,title}) {
+//question pano nag connect ung header at ugn stack gamit ung props na pinasa sa stack components
+export default function Header({navigation, title}) {
 
     const openMenu = () => {
         navigation.openDrawer()

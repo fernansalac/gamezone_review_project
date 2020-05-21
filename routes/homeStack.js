@@ -9,6 +9,7 @@ const screens = {
         screen: Home,
         navigationOptions: ({navigation}) => {
             return{
+                //use the imported header component as a tag and pass a props  navigation and title
                 headerTitle: () => <Header navigation={navigation} title='GameZone' />,
             }
         }
