@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 
 export default function ReviewDetails({ navigation }) {
 
-    const pressHandler= () => {
+    const pressHandler = () => {
         navigation.goBack();
     }
 
-    return(
+    return (
         <View style={globalStyles.container}>
             <Text>{navigation.getParam('title')}</Text>
             <Text>{navigation.getParam('body')}</Text>
