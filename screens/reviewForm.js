@@ -4,6 +4,7 @@ import { globalStyles } from '../styles/global.js';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
+//validation with yup
 const reviewSchema = yup.object({
     title: yup.string()
     .required()
@@ -26,6 +27,7 @@ export default function ReviewForm({addReview}) {
         <View style={globalStyles.container}>
             <Formik
                 initialValues={{ title: '', body: '', rating: '' }}
+                //validation with yup
                 validationSchema={reviewSchema}
                 onSubmit={(values, actions) => {
                     addReview(values);
@@ -39,7 +41,9 @@ export default function ReviewForm({addReview}) {
                             placeholder='Review title'
                             onChangeText={formikProps.handleChange('title')}
                             value={formikProps.values.title}
+                            onBlur={formikProps.handleBlur('title')}
                         />
+                        <Text style={globalStyles.errorText}>{ formikProps.touched.title && formikProps.errors.title }</Text>
 
                         <TextInput
                             multiline
@@ -47,7 +51,9 @@ export default function ReviewForm({addReview}) {
                             placeholder='Review body'
                             onChangeText={formikProps.handleChange('body')}
                             value={formikProps.values.body}
+                            onBlur={formikProps.handleBlur('body')}
                         />
+                        <Text style={globalStyles.errorText}>{ formikProps.touched.body && formikProps.errors.body }</Text>
 
                         <TextInput
                             style={globalStyles.input}
@@ -55,7 +61,10 @@ export default function ReviewForm({addReview}) {
                             onChangeText={formikProps.handleChange('rating')}
                             value={formikProps.values.rating}
                             keyboardType='numeric'
+                            onBlur={formikProps.handleBlur('rating')}
                         />
+                        <Text style={globalStyles.errorText}>{ formikProps.touched.rating && formikProps.errors.rating }</Text>
+
                         <Button title='Submit' color='maroon' onPress={formikProps.handleSubmit} />
                     </View>
                 )}
