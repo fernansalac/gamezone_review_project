@@ -1,33 +1,64 @@
-import React, { useState,useEffect } from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Picker, StyleSheet, Text } from "react-native";
 import axios from 'axios';
+import Card from '../shared/cards';
+import Loading from "./loading";
 
 export default function MyPicker() {
-    const [users, setUser] = useState([]);
+    const [users, setUsers] = useState([]);
     const [temp, setTemp] = useState('');
+    const [selectedUser, setSelectedUser] = useState({});
+    const [isLoading, setLoading] = useState(false);
+
     useEffect(() => {
-        alert('a');
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(res => {
                 console.log(res);
-                setUser(res.data);
+                setUsers(res.data);
             })
 
     }, []);
-    return (
-        <View style={styles.container}>
-            <Picker
-                style={styles.pickerBox}
-                selectedValue={temp}
-                style={{ height: 50, width: 300 }}
-                onValueChange={(itemValue, itemIndex) => setTemp(itemValue)}
-            >
-                
-                { users.map(username => (
-                    <Picker.Item label={username.username} value={username.username} />
-                ))}
 
-            </Picker>
+
+    const showUserInfo = (itemValue) => {
+        setLoading(true);
+        setTemp(itemValue);
+        alert('a' + itemValue)
+        axios.get('https://jsonplaceholder.typicode.com/users/' + itemValue)
+            .then(res => {
+                console.log(res);
+                setSelectedUser(res.data);
+                setLoading(false);
+            })
+    }
+
+
+    return (
+        <View>
+            <View style={styles.container}>
+                <Picker
+                    style={styles.pickerBox}
+                    selectedValue={temp}
+                    style={{ height: 50, width: 300 }}
+                    onValueChange={(itemValue, itemIndex) => showUserInfo(itemValue)}
+                >
+
+                    {users.map(user => (
+                        <Picker.Item label={user.username} value={user.id} />
+                    ))}
+
+                </Picker>
+            </View>
+            <View>
+                {isLoading
+                    ? <Loading />
+                    : <Card>
+                        <Text>Name: {selectedUser.name}</Text>
+                        <Text>Username: {selectedUser.username}</Text>
+                        <Text>Email: {selectedUser.email}</Text>
+                    </Card>
+                }
+            </View>
         </View>
     );
 }
