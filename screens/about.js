@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/global';
 import HeadQuarters from './headQuarters';
+import Mydatepicker from './datepicker';
+import GzSwitch from '../mycomponents/gzswitch';
+import MyPicker from '../mycomponents/picker';
 
 export default function About() {
     return(
         <View style={globalStyles.container}>
             <Text>About Screen</Text>
-            <HeadQuarters />
+            {/* <GzSwitch /> */}
+            <MyPicker />
+            {/* <Mydatepicker />*/}
+            <HeadQuarters /> 
         </View>
     )
 }
