@@ -13,7 +13,7 @@ export default function About() {
             {/* <GzSwitch /> */}
             <MyPicker />
             {/* <Mydatepicker />*/}
-            <HeadQuarters /> 
+            {/* <HeadQuarters />  */}
         </View>
     )
 }

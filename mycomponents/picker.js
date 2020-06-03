@@ -40,11 +40,11 @@ export default function MyPicker() {
                     style={styles.pickerBox}
                     selectedValue={temp}
                     style={{ height: 50, width: 300 }}
-                    onValueChange={(itemValue, itemIndex) => showUserInfo(itemValue)}
+                    onValueChange={(itemValue) => showUserInfo(itemValue)}
                 >
 
                     {users.map(user => (
-                        <Picker.Item label={user.username} value={user.id} />
+                        <Picker.Item label={user.username} value={user.id} key={user.id}/>
                     ))}
 
                 </Picker>
