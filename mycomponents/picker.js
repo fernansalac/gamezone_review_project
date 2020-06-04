@@ -23,7 +23,7 @@ export default function MyPicker() {
     const showUserInfo = (itemValue) => {
         setLoading(true);
         setTemp(itemValue);
-        alert('a' + itemValue)
+        //alert('a' + itemValue)
         axios.get('https://jsonplaceholder.typicode.com/users/' + itemValue)
             .then(res => {
                 console.log(res);

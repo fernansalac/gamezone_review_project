@@ -14,6 +14,7 @@ export default function Header({ navigation, title }) {
             <MaterialIcons name='menu' size={28} onPress={openMenu} style={styles.icon} />
             <View style={styles.headerTitle}>
                 <Image source={require('../assets/heart_logo.png')} style={styles.headerImage} />
+                {/* <Image source={{uri:'https://via.placeholder.com/600/f66b97'}} style={styles.headerImage} /> */}
                 <Text style={styles.headerText}>{title}</Text>
             </View>
         </ImageBackground>
