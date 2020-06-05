@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/cards';
 import axios from 'axios';
 
 
-export default function Gallery() {
+export default function Gallery({ navigation }) {
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
@@ -23,13 +23,15 @@ export default function Gallery() {
                     data={photos}
                     renderItem={({ item }) => (
                         //passing data between screens
-                        <Card>
-                            <View style={styles.container}>
-                                <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + item.id + '/300/500.jpg' }} />
-                                {/* <Text style={styles.text}>Id: {item.id}</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('Imageinfo', item)}>
+                            <Card>
+                                <View style={styles.container}>
+                                    <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + item.id + '/300/500.jpg' }} />
+                                    {/* <Text style={styles.text}>Id: {item.id}</Text>
                                 <Text style={styles.text}>Title: {item.title}</Text> */}
-                            </View>
-                        </Card>
+                                </View>
+                            </Card>
+                        </TouchableOpacity>
                     )}
                 />
             </ScrollView>
