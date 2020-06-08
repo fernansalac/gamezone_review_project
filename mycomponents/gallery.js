@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/cards';
 import axios from 'axios';
+import PhotoReview from './photoreview';
 
 
 export default function Gallery({ navigation }) {
     const [photos, setPhotos] = useState([]);
-    const [isLike, setLikes] = useState(false);
+  
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/photos').then(res => {
@@ -15,16 +16,8 @@ export default function Gallery({ navigation }) {
             setPhotos(res.data.slice(0, 100));
         })
     }, []);
-    const handleChange = () => {
-        // if (!isLike) {
-        //     setLikes(true);
-        // }else {
-        //     setLikes(false)
-        // }
 
-        !isLike ? setLikes(true) : setLikes(false)
-
-    }
+  
 
     return (
         <View style={globalStyles.container}>
@@ -34,7 +27,6 @@ export default function Gallery({ navigation }) {
                     data={photos}
                     renderItem={({ item }) => (
                         //passing data between screens
-
                         <Card>
                             <TouchableOpacity onPress={() => navigation.navigate('Imageinfo', item)}>
                                 <View style={styles.container}>
@@ -43,25 +35,8 @@ export default function Gallery({ navigation }) {
                                 <Text style={styles.text}>Title: {item.title}</Text> */}
                                 </View>
                             </TouchableOpacity>
-                            <View>
-                                <TouchableOpacity onPress={handleChange}>
-                                    {isLike ?
-                                        <Text style={styles.likeAreaBlue}>Liked</Text>
-                                        :
-                                        <Text style={styles.likeArea}>Like</Text>
-                                    }
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <Text style={styles.likeArea}>Comment</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <Text style={styles.likeArea}>Share</Text>
-                                </TouchableOpacity>
-                            </View>
-
-
+                            <PhotoReview />
                         </Card>
-
                     )}
                 />
             </ScrollView>
