@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity, Button } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/cards';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import axios from 'axios';
 
 export default function Gallery({ navigation }) {
     const [photos, setPhotos] = useState([]);
+    const [isLike, setLikes] = useState(false);
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/photos').then(res => {
@@ -14,6 +15,16 @@ export default function Gallery({ navigation }) {
             setPhotos(res.data.slice(0, 100));
         })
     }, []);
+    const handleChange = () => {
+        // if (!isLike) {
+        //     setLikes(true);
+        // }else {
+        //     setLikes(false)
+        // }
+
+        !isLike ? setLikes(true) : setLikes(false)
+
+    }
 
     return (
         <View style={globalStyles.container}>
@@ -23,15 +34,34 @@ export default function Gallery({ navigation }) {
                     data={photos}
                     renderItem={({ item }) => (
                         //passing data between screens
-                        <TouchableOpacity onPress={() => navigation.navigate('Imageinfo', item)}>
-                            <Card>
+
+                        <Card>
+                            <TouchableOpacity onPress={() => navigation.navigate('Imageinfo', item)}>
                                 <View style={styles.container}>
                                     <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + item.id + '/300/500.jpg' }} />
                                     {/* <Text style={styles.text}>Id: {item.id}</Text>
                                 <Text style={styles.text}>Title: {item.title}</Text> */}
                                 </View>
-                            </Card>
-                        </TouchableOpacity>
+                            </TouchableOpacity>
+                            <View>
+                                <TouchableOpacity onPress={handleChange}>
+                                    {isLike ?
+                                        <Text style={styles.likeAreaBlue}>Liked</Text>
+                                        :
+                                        <Text style={styles.likeArea}>Like</Text>
+                                    }
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={styles.likeArea}>Comment</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text style={styles.likeArea}>Share</Text>
+                                </TouchableOpacity>
+                            </View>
+
+
+                        </Card>
+
                     )}
                 />
             </ScrollView>
@@ -56,5 +86,14 @@ const styles = StyleSheet.create({
         fontFamily: 'nunito-bold',
         fontSize: 18,
         color: '#333'
+    },
+    likeArea: {
+        padding: 10,
+        fontWeight: 'bold'
+    },
+    likeAreaBlue: {
+        padding: 10,
+        fontWeight: 'bold',
+        color: 'blue'
     }
 })

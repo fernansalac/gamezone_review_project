@@ -20,11 +20,6 @@ export default function Imageinfo({ navigation }) {
                         <Text style={styles.text}>{navigation.getParam('title')}</Text>
                     </View>
                 </View>
-                <View>
-                    <FontAwesome icon={SolidIcons.smile} />
-                    <FontAwesome icon={RegularIcons.smileWink} />
-                    <FontAwesome icon={BrandIcons.github} />
-                </View>
             </Card>
         </View>
     )
