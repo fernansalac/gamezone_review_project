@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, Image, TouchableOpacity, Modal } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/cards';
 import axios from 'axios';
 import PhotoReview from './photoreview';
 
 
+
 export default function Gallery({ navigation }) {
     const [photos, setPhotos] = useState([]);
-  
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/photos').then(res => {
@@ -17,7 +19,10 @@ export default function Gallery({ navigation }) {
         })
     }, []);
 
-  
+    const toggleModal = () => {
+        setIsModalVisible(!isModalVisible);
+    }
+
 
     return (
         <View style={globalStyles.container}>
@@ -40,6 +45,7 @@ export default function Gallery({ navigation }) {
                     )}
                 />
             </ScrollView>
+
         </View>
     )
 }

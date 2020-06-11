@@ -5,6 +5,7 @@ import HeadQuarters from './headQuarters';
 import Mydatepicker from './datepicker';
 import GzSwitch from '../mycomponents/gzswitch';
 import MyPicker from '../mycomponents/picker';
+import Icons from '../mycomponents/icons';
 
 export default function About() {
     return(
@@ -14,6 +15,8 @@ export default function About() {
             <MyPicker />
             {/* <Mydatepicker />*/}
             {/* <HeadQuarters />  */}
+
+            <Icons />
         </View>
     )
 }
