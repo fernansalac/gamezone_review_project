@@ -29,6 +29,12 @@ export const globalStyles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 6,
         textAlign: 'center'
+    },
+    pagetitle: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        paddingBottom: 8
     }
 });
 

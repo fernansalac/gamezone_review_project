@@ -5,18 +5,18 @@ import HeadQuarters from './headQuarters';
 import Mydatepicker from './datepicker';
 import GzSwitch from '../mycomponents/gzswitch';
 import MyPicker from '../mycomponents/picker';
-import Icons from '../mycomponents/icons';
+import FlexPractice from '../junecomponent/flexpractice';
+
 
 export default function About() {
     return(
         <View style={globalStyles.container}>
-            <Text>About Screen</Text>
+            <Text style={globalStyles.pagetitle}>About Screen</Text>
             {/* <GzSwitch /> */}
-            <MyPicker />
+            {/* <MyPicker /> */}
             {/* <Mydatepicker />*/}
-            {/* <HeadQuarters />  */}
-
-            <Icons />
+            {/* <HeadQuarters />  */}   
+            <FlexPractice />
         </View>
     )
 }

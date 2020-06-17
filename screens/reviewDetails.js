@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { globalStyles, images } from '../styles/global';
 import Card from '../shared/cards';
+import FlatButton from '../shared/button';
 
 export default function ReviewDetails({ navigation }) {
     const rating = navigation.getParam('rating');
@@ -15,6 +16,7 @@ export default function ReviewDetails({ navigation }) {
             <Card>
                 <Text>{navigation.getParam('title')}</Text>
                 <Text>{navigation.getParam('body')}</Text>
+                <Text>{navigation.getParam('key')}</Text>
                 <View style={styles.rating}>
                     <Text>GameZone rating: </Text>
                     <Image source={images.ratings[rating]} />
@@ -32,5 +34,5 @@ const styles = StyleSheet.create({
         marginTop: 16,
         borderTopWidth: 1,
         borderTopColor: '#eee'
-    }
+    },
 })

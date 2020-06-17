@@ -26,7 +26,7 @@ export default function Gallery({ navigation }) {
 
     return (
         <View style={globalStyles.container}>
-            <Text>Gallery</Text>
+            <Text style={globalStyles.pagetitle}>Gallery</Text>
             <ScrollView>
                 <FlatList
                     data={photos}
@@ -76,5 +76,5 @@ const styles = StyleSheet.create({
         padding: 10,
         fontWeight: 'bold',
         color: 'blue'
-    }
+    }, 
 })
