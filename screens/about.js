@@ -6,6 +6,7 @@ import Mydatepicker from './datepicker';
 import GzSwitch from '../mycomponents/gzswitch';
 import MyPicker from '../mycomponents/picker';
 import FlexPractice from '../junecomponent/flexpractice';
+import Login from './login';
 
 
 export default function About() {
@@ -13,10 +14,11 @@ export default function About() {
         <View style={globalStyles.container}>
             <Text style={globalStyles.pagetitle}>About Screen</Text>
             {/* <GzSwitch /> */}
-            {/* <MyPicker /> */}
+            <MyPicker />
             {/* <Mydatepicker />*/}
-            {/* <HeadQuarters />  */}   
-            <FlexPractice />
+            {/* <HeadQuarters />     */}
+            {/* <FlexPractice /> */}
+            {/* // login test <Login /> */}
         </View>
     )
 }

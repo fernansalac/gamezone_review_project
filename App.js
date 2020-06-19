@@ -4,6 +4,7 @@ import * as Font from 'expo-font';
 import Home from './screens/home';
 import { AppLoading } from 'expo';
 import Navigator from './routes/drawer';
+import Login from './screens/login';
 
 //function that returns a registered fonts
 const getFonts = () => Font.loadAsync({
@@ -15,11 +16,19 @@ const getFonts = () => Font.loadAsync({
 export default function App() {
   //check if its loaded
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   if (fontsLoaded) {
-    return (
-      <Navigator />
+    if(isLogin ==  false){
+      return (
+        <Login setIsLogin={setIsLogin} />
     );
+    }else {
+        //Navigation
+        return (
+          <Navigator />
+        )
+    }
   } else {
     return (
       <AppLoading
