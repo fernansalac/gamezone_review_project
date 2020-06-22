@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { globalStyles, images } from '../styles/global';
 import Card from '../shared/cards';
 import FlatButton from '../shared/button';
+import Appbg from '../shared/appbackground';
 
 export default function ReviewDetails({ navigation }) {
     const rating = navigation.getParam('rating');
@@ -12,17 +13,19 @@ export default function ReviewDetails({ navigation }) {
     }
 
     return (
-        <View style={globalStyles.container}>
-            <Card>
-                <Text>{navigation.getParam('title')}</Text>
-                <Text>{navigation.getParam('body')}</Text>
-                <Text>{navigation.getParam('key')}</Text>
-                <View style={styles.rating}>
-                    <Text>GameZone rating: </Text>
-                    <Image source={images.ratings[rating]} />
-                </View>
-            </Card>
-        </View>
+        <Appbg>
+            <View style={globalStyles.container}>
+                <Card>
+                    <Text>{navigation.getParam('title')}</Text>
+                    <Text>{navigation.getParam('body')}</Text>
+                    <Text>{navigation.getParam('key')}</Text>
+                    <View style={styles.rating}>
+                        <Text>GameZone rating: </Text>
+                        <Image source={images.ratings[rating]} />
+                    </View>
+                </Card>
+            </View>
+        </Appbg>
     )
 }
 

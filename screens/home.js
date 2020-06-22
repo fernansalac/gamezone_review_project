@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Animated, StyleSheet, Text, View, FlatList, TouchableOpacity, Modal,
     TouchableWithoutFeedback, Keyboard
@@ -7,6 +7,7 @@ import { globalStyles } from '../styles/global';
 import Card from '../shared/cards';
 import { MaterialIcons, Entypo, FontAwesome } from '@expo/vector-icons';
 import ReviewForm from './reviewForm';
+import Appbg from '../shared/appbackground';
 
 
 export default function Home({ navigation }) {
@@ -16,7 +17,7 @@ export default function Home({ navigation }) {
     useEffect(() => {
         fadeIn()
     }, []);
-                
+
 
     const [reviews, setReviews] = useState([
         { title: 'Zelda Breath of Fresh Air', rating: 5, body: 'lorem ipsum', key: '1' },
@@ -41,54 +42,53 @@ export default function Home({ navigation }) {
     };
 
     return (
-        <View style={globalStyles.container}>
-            <Modal visible={modalOpen} animationType='slide'>
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View style={styles.modalContent}>
-                        <FontAwesome
-                            name="close"
-                            onPress={() => setModalOpen(false)}
-                            size={24}
-                            style={{ ...styles.modalToggle, ...styles.modalClose }}
-                            color="black"
-                        />
-                        <ReviewForm addReview={addReview} />
-                    </View>
-                </TouchableWithoutFeedback>
-            </Modal>
+        <Appbg>
+            <View style={globalStyles.container}>
+                <Modal visible={modalOpen} animationType='slide'>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View style={styles.modalContent}>
+                            <FontAwesome
+                                name="close"
+                                onPress={() => setModalOpen(false)}
+                                size={24}
+                                style={{ ...styles.modalToggle, ...styles.modalClose }}
+                                color="black"
+                            />
+                            <ReviewForm addReview={addReview} />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </Modal>
 
-            <Entypo name="add-to-list"
-                onPress={() => setModalOpen(true)}
-                size={24} color="black"
-                style={styles.modalToggle} />
-            <Card>
-                <Text style={styles.totalReview}>Total Reviews: {reviews.length}</Text>
-            </Card>
-            <FlatList
-                data={reviews}
-                renderItem={({ item }) => (
-                    //passing data between screens
-                    <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', item)}>
+                <Entypo name="add-to-list"
+                    onPress={() => setModalOpen(true)}
+                    size={24} color="white"
+                    style={styles.modalToggle} />
+                <Card>
+                    <Text style={styles.totalReview}>Total Reviews: {reviews.length}</Text>
+                </Card>
+                <FlatList
+                    data={reviews}
+                    renderItem={({ item }) => (
+                        //passing data between screens
+                        <TouchableOpacity onPress={() => navigation.navigate('ReviewDetails', item)}>
 
-                        <Animated.View
-                            style={[
-                                styles.fadingContainer,
-                                {
-                                    opacity: fadeAnim
-                                }
-                            ]}
-                        >
-                            <Card>
-                                <Text style={globalStyles.titleText}>{item.title}</Text>
-                            </Card>
-                        </Animated.View>
-
-
-                    </TouchableOpacity>
-                )}
-
-            />
-        </View>
+                            <Animated.View
+                                style={[
+                                    styles.fadingContainer,
+                                    {
+                                        opacity: fadeAnim
+                                    }
+                                ]}
+                            >
+                                <Card>
+                                    <Text style={globalStyles.titleText}>{item.title}</Text>
+                                </Card>
+                            </Animated.View>
+                        </TouchableOpacity>
+                    )}
+                />
+            </View>
+        </Appbg>
     )
 }
 

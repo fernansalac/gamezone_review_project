@@ -4,6 +4,7 @@ import { globalStyles } from '../styles/global';
 import Card from '../shared/cards';
 import axios from 'axios';
 import PhotoReview from './photoreview';
+import Appbg from '../shared/appbackground';
 
 
 
@@ -25,28 +26,29 @@ export default function Gallery({ navigation }) {
 
 
     return (
-        <View style={globalStyles.container}>
-            <Text style={globalStyles.pagetitle}>Gallery</Text>
-            <ScrollView>
-                <FlatList
-                    data={photos}
-                    renderItem={({ item }) => (
-                        //passing data between screens
-                        <Card>
-                            <TouchableOpacity onPress={() => navigation.navigate('Imageinfo', item)}>
-                                <View style={styles.container}>
-                                    <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + item.id + '/300/500.jpg' }} />
-                                    {/* <Text style={styles.text}>Id: {item.id}</Text>
+        <Appbg>
+            <View style={globalStyles.container}>
+                <Text style={globalStyles.pagetitle}>Gallery</Text>
+                <ScrollView>
+                    <FlatList
+                        data={photos}
+                        renderItem={({ item }) => (
+                            //passing data between screens
+                            <Card>
+                                <TouchableOpacity onPress={() => navigation.navigate('Imageinfo', item)}>
+                                    <View style={styles.container}>
+                                        <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + item.id + '/300/500.jpg' }} />
+                                        {/* <Text style={styles.text}>Id: {item.id}</Text>
                                 <Text style={styles.text}>Title: {item.title}</Text> */}
-                                </View>
-                            </TouchableOpacity>
-                            <PhotoReview />
-                        </Card>
-                    )}
-                />
-            </ScrollView>
-
-        </View>
+                                    </View>
+                                </TouchableOpacity>
+                                <PhotoReview />
+                            </Card>
+                        )}
+                    />
+                </ScrollView>
+            </View>
+        </Appbg>
     )
 }
 
@@ -76,5 +78,5 @@ const styles = StyleSheet.create({
         padding: 10,
         fontWeight: 'bold',
         color: 'blue'
-    }, 
+    },
 })

@@ -34,7 +34,8 @@ export const globalStyles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingBottom: 8
+        paddingBottom: 8,
+        color: 'white'
     }
 });
 

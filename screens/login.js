@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ImageBackground } from 'react-native';
+import Appbg from '../shared/appbackground';
 
 export default function Login({ setIsLogin }) {
     const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ export default function Login({ setIsLogin }) {
     }
 
     return (
-        <ImageBackground source={require('../assets/phone_bg.jpg')} style={styles.background}>
+        <Appbg>
             <View>
                 <TextInput
                     value={username}
@@ -36,7 +37,7 @@ export default function Login({ setIsLogin }) {
                     onPress={handleLogin}
                 />
             </View>
-        </ImageBackground>
+        </Appbg> 
     )
 }
 
@@ -57,10 +58,5 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: 'white'
     },
-    background: {
-        height: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
+
 });

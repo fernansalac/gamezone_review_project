@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { globalStyles, images } from '../styles/global';
 import Card from '../shared/cards';
 import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
+import Appbg from '../shared/appbackground';
 
 export default function Imageinfo({ navigation }) {
 
@@ -11,17 +12,19 @@ export default function Imageinfo({ navigation }) {
     }
 
     return (
-        <View style={globalStyles.container}>
-            <Card style={styles.card}>
-                <View style={styles.container}>
-                    <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + navigation.getParam('id') + '/300/500.jpg' }} />
-                    <View style={styles.textArea}>
-                        <Text style={styles.text1}>{navigation.getParam('id')}</Text>
-                        <Text style={styles.text}>{navigation.getParam('title')}</Text>
+        <Appbg>
+            <View style={globalStyles.container}>
+                <Card style={styles.card}>
+                    <View style={styles.container}>
+                        <Image style={styles.image} source={{ uri: 'https://i.picsum.photos/id/' + navigation.getParam('id') + '/300/500.jpg' }} />
+                        <View style={styles.textArea}>
+                            <Text style={styles.text1}>{navigation.getParam('id')}</Text>
+                            <Text style={styles.text}>{navigation.getParam('title')}</Text>
+                        </View>
                     </View>
-                </View>
-            </Card>
-        </View>
+                </Card>
+            </View>
+        </Appbg>
     )
 }
 
